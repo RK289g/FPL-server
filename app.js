@@ -14,14 +14,16 @@ app.get("/", (req, res) => {
 });
 
 // GET route to fetch data from an API
-app.get("/league", async (req, res) => {
+app.get("/league/:leagueId", async (req, res) => {
+  const { leagueId } = req.params;
+
   try {
     const response = await axios.get(
-      "https://fantasy.premierleague.com/api/leagues-classic/856056/standings"
+      `https://fantasy.premierleague.com/api/leagues-classic/${leagueId}/standings`
     );
     res.json(response.data);
   } catch (error) {
-    res.status(500).send("Error fetching data from API");
+    res.status(500).json({ error: "Failed to fetch league data" });
   }
 });
 
