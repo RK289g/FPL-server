@@ -29,7 +29,7 @@ app.get("/league/:leagueId", async (req, res) => {
 app.get("/user", async (req, res) => {
   try {
     const response = await axios.get(
-      "https://fantasy.premierleague.com/api/api/entry/1531645/"
+      "https://fantasy.premierleague.com/api/entry/${TeamId}/"
     );
     res.json(response.data);
   } catch (error) {
